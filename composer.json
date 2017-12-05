@@ -1,0 +1,13 @@
+{
+    "name": "marcelodeandrade/divisao-regional-geojson",
+    "description": "Regiões Brasileiras conforme revisão do IBGE 2017",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marcelo de Andrade",
+            "email": "andrade.asmarcelo@gmail.com"
+        }
+    ],
+    "require": {}
+}

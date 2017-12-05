@@ -1,0 +1,7 @@
+/mapa_ol
+/node_modules
+/topojson
+*.php
+*.html
+!composer.json
+!README.md

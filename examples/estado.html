@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GeoJSON</title>
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.6.0/css/ol.css" type="text/css">
+    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+    <script src="https://openlayers.org/en/v4.6.0/build/ol.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+</head>
+<body>
+    <div id="map" class="map"></div>
+    <script>
+        
+        $.getJSON('../src/estados/27.geojson', function(geojsonObject) {
+
+            var features = new ol.format.GeoJSON().readFeatures(geojsonObject, {
+                featureProjection: "EPSG:3857"
+            });
+            
+            var vectorSource = new ol.source.Vector({
+                features: features
+            });
+
+            var vectorLayer = new ol.layer.Vector({
+                source: vectorSource
+            });
+            
+            var view =  new ol.View({
+                center: [0,0],
+                zoom: 1
+            });
+            
+            var map = new ol.Map({
+                layers: [
+                new ol.layer.Tile({
+                    source: new ol.source.OSM()
+                }),
+                vectorLayer
+                ],
+                target: 'map',
+                view: view
+            });
+
+            map.getView().fit(vectorSource.getExtent(), map.getSize()); 
+            map.getView().getCenter();
+
+        }); 
+
+    </script>
+</body>
+</html>
